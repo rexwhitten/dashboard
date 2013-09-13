@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>(Dash)</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS --->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/r-nav.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="../../assets/js/html5shiv.js"></script>
+            <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body style="background-color: #808080">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-default" role="navigation" style="margin-top: -20px; border-color: #808080">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+            <a class="navbar-brand font_coda" href="#" style="color: #808080">DASHBOARD</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse navbar-inverse">
+        <ul class="nav navbar-nav  navbar-inverse">
+            <li class="active"><a href="#" id="play_pause"><i id="play_pause_i" class="glyphicon glyphicon-play"></i></a></li>
+            <li class=""><a href="#" id="next"><i class="glyphicon glyphicon-fast-backward"></i></a></li>
+            <li class=""><a href="#" id="back"><i  class="glyphicon glyphicon-fast-forward"></i></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Hunnoval Law</a></li>
+        </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+
+    <div class="container">
+        <div id="impress">
+            <div id="step_1" class="step slide" data-x="0" data-y="0">
+                 <h1>VA Dashboard</h1>
+            </div>
+            <div id="step_2" class="step " data-x="-1500" data-y="0">
+                 <h1>SC Dashboard</h1>
+            </div>
+            <div id="step_3" class="step " data-x="-3000" data-y="0">
+               
+                <h1>NC Dashboard</h1>
+            </div>
+            <div id="step_4" class="step slide" data-x="-4500" data-y="0">
+                <h1>Timeline Dashboard</h1>
+            </div>
+        </div> <!-- Impress -->
+    </div> <!-- /container -->
+
+    <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/impress.js/js/impress.js"></script>
+        <script type="text/javascript">
+            $('#impress').hide();
+            var play_ = true;
+            var direction = 0; // 0 = pause, 1 = forward, -1 = back
+
+            var dash = {};
+
+            dash.player = impress();
+
+            dash.data = [];
+
+
+            $('#play_pause').on('click', function () {
+
+                if (window.__dash == undefined) {
+                    console.log('init');
+                    window.__dash = true;
+                    impress().init();
+                    $('#impress').show();
+                }
+
+                if (window.__dash == true) {
+                    console.log('play!');
+                    // play -> pause
+                    $('#play_pause_i').removeClass('glyphicon-play');
+                    $('#play_pause_i').addClass('glyphicon-pause');
+                    window.__dash = false;
+                }
+                else {
+                    // paused -> play
+                    $('#play_pause_i').removeClass('glyphicon-pause');
+                    $('#play_pause_i').addClass('glyphicon-play');
+                    console.log('pause!');
+                    window.__dash = true;
+                }
+            });
+
+            $('#next').on('click', function () {
+                impress().next();
+            });
+
+            $('#back').on('click', function () {
+                impress().prev();
+            });
+
+
+        </script>
+    </body>
+</html>
