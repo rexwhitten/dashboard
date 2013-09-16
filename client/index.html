@@ -9,6 +9,7 @@
         <!-- CSS --->
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/r-nav.css" rel="stylesheet">
+        <link href="css/xcharts.min.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="../../assets/js/html5shiv.js"></script>
@@ -46,16 +47,19 @@
         <div id="impress">
             <div id="step_1" class="step slide" data-x="0" data-y="0">
                  <h1>VA Dashboard</h1>
+                <figure style="width: 1000px; height: 600px;" id="chart_1" ></figure>
             </div>
             <div id="step_2" class="step " data-x="-1500" data-y="0">
                  <h1>SC Dashboard</h1>
+                 <figure style="width: 1000px; height: 600px;" id="chart_2" ></figure>
             </div>
             <div id="step_3" class="step " data-x="-3000" data-y="0">
-               
                 <h1>NC Dashboard</h1>
+                 <figure style="width: 1000px; height: 600px;" id="chart_3" ></figure>
             </div>
             <div id="step_4" class="step slide" data-x="-4500" data-y="0">
                 <h1>Timeline Dashboard</h1>
+                <figure style="width: 1000px; height: 600px;" id="chart_4" ></figure>
             </div>
         </div> <!-- Impress -->
     </div> <!-- /container -->
@@ -64,6 +68,7 @@
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/impress.js/js/impress.js"></script>
     <script type="text/javascript" src="bower_components/d3/d3.js"></script>
+    <script type="text/javascript" src="js/xcharts.js"></script>
     <!-- Dashboard Scripts (TODO: Move to dash.js) -->
     <script type="text/javascript">
         $('#impress').hide();
@@ -81,7 +86,7 @@
             // Show Data Loading Graphics 
 
             // Load Data 
-            createChart();
+            createCharts();
             
             
             
@@ -116,7 +121,7 @@
             impress().prev();
         });
 
-        function createChart() {
+        function createCharts() {
             var data = {
                 "xScale": "ordinal",
                 "yScale": "linear",
@@ -136,7 +141,10 @@
                     }
                   ]
             };
-            var myChart = new xChart('bar', data, '#step_1');
+            var myChart = new xChart('bar', data, '#chart_1');
+            var myChart = new xChart('bar', data, '#chart_2');
+            var myChart = new xChart('bar', data, '#chart_3');
+            var myChart = new xChart('bar', data, '#chart_4');
         }
         </script>
     </body>
