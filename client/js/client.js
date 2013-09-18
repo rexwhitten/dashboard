@@ -47,8 +47,6 @@ var DashClient = function () {
     return self;
 }
 
-
-
 function GetTrendData_TitleCompleted(){
   
 
@@ -104,8 +102,6 @@ function GetTrendData_TitleCompleted(){
     return data;
 }
 
-
-
 function GetTrendData_ComplaintFiled(){
   
 
@@ -160,7 +156,6 @@ function GetTrendData_ComplaintFiled(){
     
     return data;
 }
-
 
 function GetTrendData_OORSent(){
   

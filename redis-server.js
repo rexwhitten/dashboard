@@ -59,8 +59,8 @@ function GetSql (_query) {
 	};
 
 	console.log("Starting Program....");
-	GetSql("SELECT * FROM rpt.TimelineAggregate");
+	//GetSql("SELECT * FROM rpt.TimelineAggregate");
 	//GetDataRPT("SELECT * FROM rpt_AgedCasesAgg");
-	//GetDataRPT("SELECT * FROM rpt_dashboard_ticker");
+	GetDataRPT("SELECT * FROM rpt_dashboard_ticker");
 	
 	
