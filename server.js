@@ -1,87 +1,73 @@
 // Dashboard Application
 
 var __title__ = '.-.-.-.-.-.-.- (( D A S H )) .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-'
-
 console.log(__title__);
-
-var _sql = function () {
-    var self = {};
-
-    self.Query = function (query) {
-        var result = [];
-        var db = require('mssql');
-        var _config = {
-            user: '',
-            passowrd: '',
-            server: '',
-            database: ''
-        };
-
-        db.connect(config, function (err) {
-            var request = new db.Request();
-            request.query(query, function (err, recordset) {
-                if (err) console.log(err);
-                console.log('Query Complete');
-                result = recordset;
-            });
-        });
-
-        return result;
-    }
-
-    return self;
-};
-
-
-
 
 var web = function (port) {
     var web = {};
     var express = require('express');
     var app = express();
+    var _cache_ = require('./cache.js');
+    var cache = new _cache_.Cache();
+    var queryList = {};
 
     // Static Content. Set everything in the Client Application folder to static. 
     // The Root Path of the Application is now listening here. 
     app.use('/', express.static(__dirname + '/client'));
 
-
+    // -----------------------------------------------------------------------------
     // REST API 
-    app.get('/SC', function (req, res) {
-        var _sc_data_1 = [];
-        var _sc_data_2 = [];
-        var _sc_data_3 = [];
-        var _sc_data_4 = [];
-        var _sc_data_5 = [];
-
-        // Connect to SQL and get the View Dat fro the Reports/Dashboards
-        var sql = new _sql();
-        _sc_data_1 = sql.Query('SELECT * FROM ');
-        _sc_data_2 = sql.Query('SELECT * FROM ');
-        _sc_data_3 = sql.Query('SELECT * FROM ');
-        _sc_data_4 = sql.Query('SELECT * FROM ');
-        _sc_data_5 = sql.Query('SELECT * FROM ');
-
-        // Build Body 
-        var body = [];
-        body.push(_sc_data_1);
-        body.push(_sc_data_2);
-        body.push(_sc_data_3);
-        body.push(_sc_data_4);
-        body.push(_sc_data_5);
-
-        // Return JSON Objects 
-        res.send(body);
+    // -----------------------------------------------------------------------------
+    app.get('/SC/Aged', function (req, res) {
+        var query = 'SELECT * FROM rpt_AgedCasesAgg';
+        cache.Get('/SC/Aged', query, function (data) {
+            console.log("HTTP:/SC/Aged:Response");
+            res.send(data);
+            //res.end();
+            //res.json(data);
+        });
     });
 
+    app.get('/SC/Ticker', function (req, res) {
+        var query = 'SELECT * FROM rpt_dashboard_ticker';
+        cache.Get('/SC/Ticker', query, function (data) {
+            console.log("HTTP:/SC/Ticker/:Response");
+            res.send(data);
+            //res.end();
+            //res.json(data);
+        });
+    });
+
+    app.get('/SC/Timeline/Cases', function (req, res) {
+        var query = 'SELECT * FROM rpt.TimelineAggregate';
+        cache.GetDev('/SC/Timeline/Cases', query, function (data) {
+            console.log("HTTP:/SC/Timeline/Cases:Response");
+            res.send(data);
+            res.end();
+           // res.json(data);
+        });
+    });
+
+    app.get('/Cache/Preload', function (req, res) {
+        console.log('Preloading data into cache');
+
+        queryList["/SC/Aged"](function (data) { });
+        queryList["/SC/Ticker"](function (data) { });
+        queryList["/SC/Timeline/Cases"](function (data) { });
+        console.log('Preloading data complete');
+        res.send("Cache Loaded");
+    });
+
+    app.get('/Cache/Stats', function (req, res) {
+        res.send(cache.GetCacheStatus());
+    });
+
+    // Start Server
     app.listen(port);
 
     return web;
 };
 
 /// Server Instance Creation
-var web_server = new web(3003);
-
-
-
-
-console.log('server listening at Port: 3003.');
+var web_server = new web(3004);
+console.log('server listening at Port: 3004.');

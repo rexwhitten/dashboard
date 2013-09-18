@@ -3,20 +3,32 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>(Dash)</title>
+        <title>Hunoval Law</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="dash:application/" id="$N">
         <!-- CSS --->
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/r-nav.css" rel="stylesheet">
         <link href="css/xcharts.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="../../assets/js/html5shiv.js"></script>
             <script src="../../assets/js/respond.min.js"></script>
         <![endif]-->
+        <style>
+            .loading-text {
+                opacity: 0.85;
+                color: #d5d2d2;
+            }
+            
+            .dashslide {
+                
+            }
+
+        </style>
     </head>
-    <body style="background-color: #a7b7c9">
+    <body style="background-color: #fff">
     <!-- Nav Bar -->
     <nav class="navbar navbar-default" role="navigation" style="margin-top: -20px; border-color: #808080">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,125 +39,325 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-            <a class="navbar-brand font_coda" href="#" style="color: #808080">DASHBOARD</a>
+            <a class="navbar-brand font_coda" href="#" style="color: #808080"><i class="icon-legal" style="font-size: 18px; color: #fff"></i> Dashboard</a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse navbar-inverse">
         <ul class="nav navbar-nav  navbar-inverse">
-            <li class="active"><a href="#" id="play_pause"><i id="play_pause_i" class="glyphicon glyphicon-play"></i></a></li>
+            <!--<li class="active"><a href="#" id="play_pause"><i id="play_pause_i" class="glyphicon glyphicon-play"></i></a></li>-->
             <li class=""><a href="#" id="next"><i class="glyphicon glyphicon-fast-backward"></i></a></li>
-            <li class=""><a href="#" id="back"><i  class="glyphicon glyphicon-fast-forward"></i></a></li>
+            <li class=""><a href="#" id="back"><i class="glyphicon glyphicon-fast-forward"></i></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Hunnoval Law</a></li>
         </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
-
-    <div class="container">
+    <!-- Impress/Chart Area -->
+    <div class="container" style="margin-top: 50px">
         <div id="impress">
-            <div id="step_1" class="step slide" data-x="0" data-y="0">
-                 <h1>VA Dashboard</h1>
-                <figure style="width: 1000px; height: 600px;" id="chart_1" ></figure>
+            <!-- Slide 1 -->
+            <div id="step_1" class="step slide dashslide" data-x="0" data-y="0" data-scale="1.1">
+               <div class="container" style="width: 1400px">
+                       <div class="jumbotron">
+                            <div>
+                                <h1>Hunoval Law Firm</h1>
+                            </div>
+                        <p class="lead" style="font-size: xx-large"><i class="icon-dashboard" style="font-size: 48px; color: #1157c5"></i> Operational Dashboard</p>
+                        <p><img src="http://www.hunovallaw.com/assets/img/logo/hunoval_law.gif" alt="The Hunoval Law Firm"/></p>
+                      </div>
+               </div>
             </div>
-            <div id="step_2" class="step " data-x="-1500" data-y="0">
-                 <h1>SC Dashboard</h1>
-                 <figure style="width: 1000px; height: 600px;" id="chart_2" ></figure>
+            <!-- Slide 2 -->
+            <div id="step_2" class="step slide dashslide" data-x="1600" data-y="0" data-scale="1.1">
+                <div class="container" style="width: 1400px">
+                    <div><h1><i class="icon-time" style="font-size: 48px; color: #1172e8"></i> SC Foreclosure Operational Metrics</h1>Current Month</div>
+                    <div>
+                        <h2 id="loading_3" class="loading-text">Loading Data ...</h2>
+                        <div id="timeline_metrics"></div>
+                    </div>
+                </div>
             </div>
-            <div id="step_3" class="step " data-x="-3000" data-y="0">
-                <h1>NC Dashboard</h1>
-                 <figure style="width: 1000px; height: 600px;" id="chart_3" ></figure>
+            <!-- Slide 3 -->
+            <div id="step_3" class="step slide dashslide" data-x="3200" data-y="0" data-scale="1.1">
+                <div class="container" style="width: 1400px; text-align: center">
+                    <div><h1><i class="icon-time" style="font-size: 48px; color: #1172e8"></i>  SC Aging Cases</h1> Days x Case Count</div>
+                    <h2 id="loading_1"class="loading-text">Loading Data ...</h2>
+                    <figure style="width: 1300px; height: 500px;" id="chart_1" ></figure>
+                </div>
             </div>
-            <div id="step_4" class="step slide" data-x="-4500" data-y="0">
-                <h1>Timeline Dashboard</h1>
-                <figure style="width: 1000px; height: 600px;" id="chart_4" ></figure>
+            <!-- Slide 4 -->
+            <div id="step_4" class="step slide dashslide" data-x="4800" data-y="0" data-scale="1.1">
+                <div class="container" style="width: 1400px">
+                    <div>
+                        <h2><i class="icon-suitcase" style="font-size: 48px; color: #1157c5"></i>  Title Completed</h2>
+                        <div class="alert">SC FC Performance Milestones Trends</div>
+                    </div>
+                    <div class="row">
+                     <div class="col-md-2">
+                        <ul class="nav nav-stacked" style="width: 150px;">
+                          <li class="active"><a href="#" style="font-size: x-large;"><span class="label label-primary pull-right" style="font-size: large">5.2</span>Jan</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">2.7</span>Feb</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">39.4</span>Mar</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">3.1</span>Apr</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">1.8</span>May</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">1.5</span>Jun</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">8.8</span>Jul</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">10.9</span>Aug</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">8.5</span>Sept</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-md-8"><figure style="width: 1000px; height: 500px;" id="chart_4"></figure></div>
+                </div>
+                </div>
+            </div>
+            <!-- Slide 5 -->
+            <div id="step_5" class="step slide dashslide" data-x="6400" data-y="0" data-scale="1.1" >
+                 <div class="container" style="width: 1400px">
+                     <div>
+                        <h2><i class="icon-suitcase" style="font-size: 48px; color: #1172e8"></i>  Complaint Filed</h2>
+                        <div class="alert">SC FC Performance Milestones Trends</div>
+                     </div>
+                     <div class="row">
+                    <div class="col-md-2">
+                        <ul class="nav nav-stacked" style="width: 150px;">
+                          <li class="active"><a href="#" style="font-size: x-large;"><span class="label label-primary pull-right" style="font-size: large">12.7</span>Jan</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">9.1</span>Feb</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">8.4</span>Mar</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">33.9</span>Apr</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">32.4</span>May</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">38.6</span>Jun</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">31</span>Jul</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">62</span>Aug</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">23</span>Sept</a></li>
+                        </ul>
+                      </div>
+                    <div class="col-md-8"><figure style="width: 1200px; height: 500px;" id="chart_5" ></figure></div>
+                </div>
+                </div>
+            </div>
+            <!-- Slide 6 -->
+            <div id="step_6" class="step slide dashslide" data-x="8000" data-y="0" data-scale="1.1" style="margin-left: 60px">
+                <div class="container" style="width: 1400px">
+                    <div>
+                        <h2><i class="icon-suitcase" style="font-size: 48px; color: #1172e8"></i>  OOR Sent</h2>
+                        <div class="alert">SC FC Performance Milestones Trends</div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-2">
+                        <ul class="nav nav-stacked" style="width: 150px;">
+                          <li class="active"><a href="#" style="font-size: x-large;"><span class="label label-primary pull-right" style="font-size: large">9.2</span>Jan</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">25.9</span>Feb</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">15.6</span>Mar</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">16.3</span>Apr</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">8.6</span>May</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">5.4</span>Jun</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">17.4</span>Jul</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">26.8</span>Aug</a></li>
+                          <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">39.3</span>Sept</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-md-8"><figure style="width: 1000px; height: 500px;" id="chart_6"></figure></div>
+                    </div>     
+                </div>
+            </div>
+            <!-- Slide 7 -->
+            <div id="step_7" class="step slide dashslide" data-x="9600" data-y="0" data-scale="1.1">
+                 <div class="container" style="width: 1400px">
+                     <div>
+                        <h2><i class="icon-suitcase" style="font-size: 48px; color:  #1172e8"></i> Deed Sent</h2>
+                        <div class="alert">SC FC Performance Milestones Trends</div>
+                     </div>
+                     <div class="row">
+                    <div class="col-md-2">
+                    <ul class="nav nav-stacked" style="width: 150px;">
+                        <li class="active"><a href="#" style="font-size: x-large;"><span class="label label-primary pull-right" style="font-size: large">9.2</span>Jan</a></li>
+                        <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">25.9</span>Feb</a></li>
+                        <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">15.6</span>Mar</a></li>
+                        <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">16.3</span>Apr</a></li>
+                        <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">8.6</span>May</a></li>
+                        <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">5.4</span>Jun</a></li>
+                        <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">17.4</span>Jul</a></li>
+                        <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">26.8</span>Aug</a></li>
+                        <li class="active"><a href="#" style="font-size: x-large"><span class="label label-primary pull-right" style="font-size: large">2.1</span>Sept</a></li>
+                    </ul>
+                    </div>
+                     <div class="col-md-8"><figure style="width: 1000px; height: 500px;" id="chart_7"></figure></div>
+                </div>
+                </div>
             </div>
         </div> <!-- Impress -->
     </div> <!-- /container -->
-
+    <!-- Ticker Footer Area -->
+    <div class="navbar navbar-inverse navbar-fixed-bottom marquee">
+        <h4 id="ticker_data">Loading Data....</h4>
+    </div>
+    <!-- Script References -->
     <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/impress.js/js/impress.js"></script>
     <script type="text/javascript" src="bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="js/xcharts.js"></script>
+    <script type="text/javascript" src="js/client.js"></script>
+    <script type="text/javascript" src="js/jQuery.Marquee/jquery.marquee.js"></script>
     <!-- Dashboard Scripts (TODO: Move to dash.js) -->
     <script type="text/javascript">
+        var dash = new DashClient();
+
+        function loadDashboard() {
+            console.log('Loading Dashboard');
+            impress().init();
+
+            // SC Aging Report 
+            GetChartDataSet("/SC/Aged", function (data) {
+                // console.log(data);
+                new xChart('bar', data, '#chart_1');
+                //console.log('creating second chart');
+                //dash.createChart("/SC/Aged", "bar", "#chart_2", "ordinal", "linear", "chart_2");
+                $('#loading_1').hide();
+            });
+
+            // SC Timeline Cases Aggregates
+            GetDataSet('/SC/Timeline/Cases', function (data) {
+                console.log('loading timeline cases');
+                var uiset = "<table class='table'>";
+
+                uiset = uiset + "<tr><td>Milestone</td><td>Dept</td><td>Target</td><td>June</td><td>July</td><td>August</td><td>Variance</td><td>Trend</td><td>Current Upper Limit</td><td>In/Out</td><td>Multiple of Target</td></tr>";
+                uiset = uiset + "<tr><td>Referral</td><td>AS</td><td>1</td><td class='alert alert-danger'>6.8</td><td class='alert alert-danger'>2.16</td><td>0.96</td><td>1.2</td><td class='alert alert-success'><i class='icon-ok' style='font-size: 14px;'></i></td><td>4</td><td>Out</td><td>1</td></tr>";
+                uiset = uiset + "<tr><td>Title Received</td><td>AS</td><td>7</td><td class='alert alert-danger'>23.5</td><td class='alert alert-danger'>38.1</td><td class='alert alert-danger'>29</td><td>9.1</td><td class='alert alert-success'><i class='icon-ok' style='font-size: 14px;'></i></td><td>55</td><td>Out</td><td>4</td></tr>";
+                uiset = uiset + "<tr><td>Title Completed</td><td>SC_FC</td><td class='alert alert-success'>2</td><td>1.5</td><td class='alert alert-danger'>8.8</td><td class='alert alert-danger'>10.9</td><td>-2.1</td><td class='alert alert-danger'><i class='icon-remove' style='font-size: 14px;'></i></td><td>34</td><td>In</td><td>5</td></tr>";
+                uiset = uiset + "<tr><td>Complaint Filed</td><td>SC_FC</td><td class='alert alert-success'>2</td><td class='alert alert-danger'>38.6</td><td class='alert alert-danger'>31</td><td class='alert alert-danger'>62.1</td><td>-31.1</td><td class='alert alert-danger'><i class='icon-remove' style='font-size: 14px;'></i></td><td>168</td><td class='alert alert-danger'>Out</td><td>31</td></tr>";
+                uiset = uiset + "<tr><td>Service Complete</td><td>PV</td><td class='alert alert-success'>14</td><td class='alert alert-danger'>45.9</td><td class='alert alert-danger'>49.4</td><td class='alert alert-danger'>48.6</td><td>0.8</td><td class='alert alert-success'><i class='icon-ok' style='font-size: 14px;'></i></td><td>195</td><td class='alert alert-danger'>Out</td><td>3</td></tr>";
+                uiset = uiset + "<tr><td>OOR Sent</td><td>SC_FC</td><td class='alert alert-success'>2</td><td class='alert alert-danger'>5.4</td><td class='alert alert-danger'>17.4</td><td class='alert alert-danger'>26.8</td><td>-9.4</td><td class='alert alert-danger'><i class='icon-remove' style='font-size: 14px;'></i></td><td>150</td><td>In</td><td>13</td></tr>";
+                uiset = uiset + "<tr><td>Hearing Held</td><td></td><td class='alert  alert-info'>15</td><td class='alert alert-danger'>22.8</td><td class='alert alert-danger'>16.9</td><td class='alert alert-info'>13.8</td><td>3.1</td><td class='alert alert-success'><i class='icon-ok' style='font-size: 14px;'></i></td><td>17</td><td>In</td><td>1</td></tr>";
+                uiset = uiset + "<tr><td>Sale Date</td><td></td><td class='alert alert-info'>45</td><td class='alert alert-danger'>46.7</td><td class='alert alert-danger'>41.8</td><td class='alert alert-info'>39.2</td><td>2.6</td><td class='alert alert-success'><i class='icon-ok' style='font-size: 14px;'></i></td><td>17</td><td>In</td><td>1</td></tr>";
+                uiset = uiset + "<tr><td>Deed Sent</td><td>SC_FC</td><td class='alert alert-success'>3</td><td class='alert alert-info'>1</td><td class='alert alert-info'>1.25</td><td class='alert alert-info'>2.75</td><td>-1.5</td><td class='alert alert-danger'><i class='icon-remove' style='font-size: 14px;'></i></td><td>4</td><td>In</td><td>1</td></tr>";
+                uiset = uiset + "<tr><td>Recorded Deed</td><td>SC_FC</td><td class='alert alert-success'>21</td><td class='alert alert-info'>11.8</td><td class='alert  alert-info'>16.2</td><td class='alert alert-info'>8</td><td>8.2</td><td class='alert alert-success'><i class='icon-ok' style='font-size: 14px;'></i></td><td>27</td><td>In</td><td>0</td></tr>";
+
+                uiset = uiset + '</table>';
+                $('#loading_3').hide();
+                $('#timeline_metrics').html(uiset);
+
+
+                // Trends 
+
+                var data = GetTrendData_TitleCompleted();
+                console.log(data);
+                var opts = {
+                    "dataFormatX": function (x) { return d3.time.format('%Y-%m-%d').parse(x); },
+                    "tickFormatX": function (x) { return d3.time.format('%B')(x); }
+                };
+                var trend_1 = new xChart('line', data, '#chart_4', opts);
+
+                var data2 = GetTrendData_ComplaintFiled();
+                var trend_2 = new xChart('line', data2, '#chart_5', opts);
+
+                var data3 = GetTrendData_OORSent();
+                var trend_3 = new xChart('line', data3, '#chart_6', opts);
+
+                var data4 = GetTrendData_DeedSent();
+                var trend_3 = new xChart('line', data4, '#chart_7', opts);
+            });
+
+            // Load the Ticker
+            GetDataSet('/SC/Ticker', function (data) {
+                var ticker_data = "<i class='icon-time' style='font-size: 28px; color: #1172e8'></i> Case Status Count......";
+
+                for (var record_index in data) {
+                    var record = data[record_index];
+                    //console.log(data.main[0].data);
+                    // console.log(JSON.stringify(record));
+                    ticker_data = ticker_data + "....<span style='color:cornflowerblue'>" + record.X + "</span>:" + "<strong  style='color:white'>" + record.Y + "</strong>";
+                }
+
+                $('#ticker_data').html(ticker_data);
+                $('.marquee').marquee({
+                    speed: 2 * 15000,
+                    gap: 50,
+                    delayBeforeStart: 0,
+                    direction: 'left',
+                    duplicated: true
+                });
+            });
+
+            var tm = $('#timeline_metrics');
+            // SC  Other Data 
+            $('#impress').show();
+            $(document).on('impress:stepenter', function(e) {
+                    var currentSlide = $(e.target).attr('id');
+                    setTimeout(impress().next, 15000);
+                });
+        };
+
+        function GetDataSet(path, callback) {
+            console.log('loading dataset (' + path + ')');
+            $.ajax({
+                type: 'GET',
+                jsonp: true,
+                dataType: 'json',
+                url: path,
+                error: function (x, y, z) {
+                    console.log(x);
+                    console.log(y);
+                    console.log(z);
+                },
+                success: function (web_data) {
+                    //console.log(web_data);
+                    callback(web_data);
+                }
+            });
+        }
+
+        function GetChartDataSet(path, callback) {
+            console.log('loading dataset (' + path + ')');
+            $.ajax({
+                type: 'GET',
+                jsonp: true,
+                dataType: 'json',
+                url: path,
+                error: function (x, y, z) {
+                    console.log(x);
+                    console.log(y);
+                    console.log(z);
+                },
+                success: function (web_data) {
+                    //console.log(web_data);
+                    console.log('Data Retrived');
+                    var chart_data = {};
+                    chart_data.xScale = 'ordinal',
+                    chart_data.yScale = 'linear',
+                    chart_data.main = [];
+
+                    var x = {};
+                    x.className = ".chart";
+                    x.data = [];
+
+                    for (var row_id in web_data) {
+                        var row = web_data[row_id];
+                        //console.log(table);
+                        x.data.push({ x: row.X, y: row.Y });
+                    }
+
+                    chart_data.main.push(x);
+                    callback(chart_data);
+                }
+            });
+        }
+
+        // Initial UI Setup
         $('#impress').hide();
-        var play_ = true;
-        var direction = 0; // 0 = pause, 1 = forward, -1 = back
+        $('#play_pause_i').hide();
 
-        var dash = {};
-
-        dash.player = impress();
-
-        dash.data = [];
-
-
-        $('#play_pause').on('click', function () {
-            // Show Data Loading Graphics 
-
-            // Load Data 
-            createCharts();
-            
-            
-            
-            if (window.__dash == undefined) {
-                console.log('init');
-                window.__dash = true;
-                impress().init();
-                $('#impress').show();
-            }
-
-            if (window.__dash == true) {
-                console.log('play!');
-                // play -> pause
-                $('#play_pause_i').removeClass('glyphicon-play');
-                $('#play_pause_i').addClass('glyphicon-pause');
-                window.__dash = false;
-            }
-            else {
-                // paused -> play
-                $('#play_pause_i').removeClass('glyphicon-pause');
-                $('#play_pause_i').addClass('glyphicon-play');
-                console.log('pause!');
-                window.__dash = true;
-            }
-        });
-
+        // Event Handler for Next button 
         $('#next').on('click', function () {
-            impress().next();
-        });
-
-        $('#back').on('click', function () {
             impress().prev();
         });
 
-        function createCharts() {
-            var data = {
-                "xScale": "ordinal",
-                "yScale": "linear",
-                "main": [
-                    {
-                        "className": ".pizza",
-                        "data": [
-                        {
-                            "x": "Pepperoni",
-                            "y": 4
-                        },
-                        {
-                            "x": "Cheese",
-                            "y": 8
-                        }
-                      ]
-                    }
-                  ]
-            };
-            var myChart = new xChart('bar', data, '#chart_1');
-            var myChart = new xChart('bar', data, '#chart_2');
-            var myChart = new xChart('bar', data, '#chart_3');
-            var myChart = new xChart('bar', data, '#chart_4');
-        }
+        // Event Handler for Back 
+        $('#back').on('click', function () {
+            impress().next();
+        });
+
+        loadDashboard();
         </script>
     </body>
 </html>
